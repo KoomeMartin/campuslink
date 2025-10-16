@@ -15,6 +15,7 @@ services:
       - PINECONE_API_KEY=${PINECONE_API_KEY}
       - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT}
       - PYTHONUNBUFFERED=1
+      
     volumes:
       # Mount data directory for knowledge base
       - ./data:/app/data:ro
@@ -47,7 +48,7 @@ services:
       backend:
         condition: service_healthy
     networks:
-      - cmu-network
+      - Lan
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
       interval: 30s
@@ -58,11 +59,22 @@ services:
       - "com.cmu-africa.service=frontend"
       - "com.cmu-africa.description=React Frontend with Nginx"
 
+    environment:
+      NODE_ENV: "production"
+
+      # Reverse proxy
+      VIRTUAL_HOST: "${FORM_HOST}"
+      VIRTUAL_PORT: "3000"
+      LETSENCRYPT_HOST: "${FORM_HOST}"
+      LETSENCRYPT_EMAIL: "${LETSENCRYPT_EMAIL}"
+
+      PORT: 3000
+      HOST: 0.0.0.0
+
 # Networks
 networks:
-  cmu-network:
-    driver: bridge
-    name: cmu-africa-network
+  Lan:
+    external: true
 
 # Volumes
 volumes:
