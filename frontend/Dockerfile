@@ -2,16 +2,23 @@
 # Multi-stage build: Node.js for building, nginx for serving
 
 # Build stage
-FROM node:18-alpine as build
+FROM node:20-bullseye AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package.json package-lock.json ./
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Install dependencies
-RUN npm ci --silent
+# Install build tools
+RUN apt-get update && apt-get install -y python3 make g++ bash
+
+
+# Copy dependency manifests and install deps
+COPY package.json ./
+# RUN npm install --legacy-peer-deps
+# RUN npm ci --production=false --omit=dev --no-audit --no-fund
+
+RUN npm install --legacy-peer-deps
 
 # Copy application files
 COPY . .
