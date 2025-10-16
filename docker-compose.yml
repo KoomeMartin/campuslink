@@ -22,7 +22,7 @@ services:
       # Mount logs directory (optional)
       - backend-logs:/app/logs
     networks:
-      - cmu-network
+      - Lan
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
       interval: 30s
