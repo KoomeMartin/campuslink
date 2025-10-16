@@ -1,0 +1,59 @@
+
+[
+  {
+    "id": "bus_services_1",
+    "title": "CMU-Africa Shuttle Bus Services",
+    "category": "Transportation",
+    "content": "CMU-Africa provides free shuttle bus services for students, faculty, and staff. The shuttle operates on weekdays from 7:00 AM to 10:00 PM, with buses departing every 30 minutes during peak hours (7-9 AM and 5-7 PM) and every hour during off-peak hours. The shuttle connects the main campus in Kigali with nearby residential areas including Kimihurura, Remera, and Nyarutarama.",
+    "keywords": ["bus", "shuttle", "transportation", "schedule", "timings"]
+  },
+  {
+    "id": "bus_services_2",
+    "title": "Shuttle Bus Routes and Stops",
+    "category": "Transportation",
+    "content": "The CMU-Africa shuttle operates three main routes: Route A serves Kimihurura and City Center, Route B covers Remera and Kisimenti, and Route C connects Nyarutarama and Gacuriro. All routes begin and end at the main campus building. Students can track the shuttle in real-time using the CMU-Africa mobile app. During weekends, a limited service operates from 9:00 AM to 6:00 PM with hourly departures.",
+    "keywords": ["bus", "routes", "stops", "tracking", "weekend"]
+  },
+  {
+    "id": "degrees_masters_1",
+    "title": "Master's Programs at CMU-Africa",
+    "category": "Academic Programs",
+    "content": "CMU-Africa offers three Master's degree programs: Master of Science in Information Technology (MSIT), Master of Science in Electrical and Computer Engineering (MSECE), and Master of Science in Engineering Artificial Intelligence (MSEAI). All programs are full-time, typically completed in 21 months, and follow Carnegie Mellon University's rigorous curriculum standards. Graduates receive degrees from Carnegie Mellon University.",
+    "keywords": ["masters", "degrees", "programs", "MSIT", "MSECE", "MSEAI", "AI", "engineering"]
+  },
+  {
+    "id": "library_hours_1",
+    "title": "Library Operating Hours",
+    "category": "Campus Facilities",
+    "content": "The CMU-Africa library is open Monday through Friday from 8:00 AM to 10:00 PM, and weekends from 10:00 AM to 8:00 PM. The library provides study spaces, computer workstations, printing services, and a quiet reading area. During exam periods, extended hours are available with 24/7 access for students.",
+    "keywords": ["library", "hours", "study", "facilities", "opening times"]
+  },
+  {
+    "id": "housing_options_1",
+    "title": "Student Housing Options",
+    "category": "Housing",
+    "content": "CMU-Africa offers on-campus housing in modern apartment-style residences located within walking distance of the main campus. Housing options include single rooms and shared apartments with 2-3 bedrooms. All housing units are fully furnished with WiFi, utilities, and weekly cleaning services included. Off-campus housing assistance is also available through the student services office.",
+    "keywords": ["housing", "accommodation", "residence", "apartments", "dorms"]
+  },
+  {
+    "id": "events_student_life_1",
+    "title": "Campus Events and Activities",
+    "category": "Student Life",
+    "content": "CMU-Africa hosts regular campus events including tech talks, cultural celebrations, career fairs, and social gatherings. The Student Government Association organizes weekly activities and monthly themed events. Students can join clubs focusing on robotics, AI, entrepreneurship, sports, and cultural exchange. A calendar of events is available on the student portal and updated weekly.",
+    "keywords": ["events", "activities", "clubs", "student life", "social"]
+  },
+  {
+    "id": "admin_contact_1",
+    "title": "Administration Office Contact",
+    "category": "Administration",
+    "content": "The CMU-Africa administration office is located in Building A, Ground Floor. Office hours are Monday to Friday, 8:30 AM to 5:00 PM. For inquiries, contact: Email: info@africa.cmu.edu, Phone: +250 788 123 456. For academic advising, visit the Academic Affairs office in Building B, Room 201. Emergency contact is available 24/7 at +250 788 999 888.",
+    "keywords": ["contact", "administration", "office", "email", "phone", "help"]
+  },
+  {
+    "id": "portal_access_1",
+    "title": "Student Portal Access",
+    "category": "Technology",
+    "content": "The CMU-Africa student portal (portal.africa.cmu.edu) provides access to course registration, grades, schedules, announcements, and campus resources. Login using your Andrew ID and password. New students receive portal credentials during orientation. For password reset or technical issues, contact IT support at itsupport@africa.cmu.edu or visit the IT help desk in the library.",
+    "keywords": ["portal", "student portal", "login", "access", "andrew id"]
+  }
+]
