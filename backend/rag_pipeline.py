@@ -35,17 +35,21 @@ class EnhancedRAGPipeline:
     def _init_pinecone_index(self):
         """Initialize or connect to Pinecone index"""
         try:
-            existing_indexes = [index.name for index in self.pc.list_indexes()]
+            # List existing indexes
+            existing_indexes = [index['name'] for index in self.pc.list_indexes()]
             
             if self.index_name not in existing_indexes:
+                # Create index with ServerlessSpec
                 self.pc.create_index(
                     name=self.index_name,
                     dimension=self.dimension,
                     metric="cosine",
                     spec=ServerlessSpec(cloud="aws", region="us-east-1")
                 )
-                time.sleep(1)
+                # Wait for index to be ready
+                time.sleep(10)
             
+            # Connect to the index
             self.index = self.pc.Index(self.index_name)
         except Exception as e:
             raise Exception(f"Failed to initialize Pinecone index: {str(e)}")
@@ -310,9 +314,17 @@ Respond with ONLY the answer text. Do not add any extra formatting or metadata."
         """Get statistics about the vector index"""
         try:
             stats = self.index.describe_index_stats()
+            # Handle both dict and object response
+            if hasattr(stats, 'total_vector_count'):
+                total = stats.total_vector_count
+                dim = stats.dimension if hasattr(stats, 'dimension') else self.dimension
+            else:
+                total = stats.get('total_vector_count', 0)
+                dim = stats.get('dimension', self.dimension)
+            
             return {
-                'total_vectors': stats.get('total_vector_count', 0),
-                'dimension': stats.get('dimension', 0)
+                'total_vectors': total,
+                'dimension': dim
             }
         except Exception as e:
             return {'error': str(e)}

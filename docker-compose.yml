@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # Backend Service - FastAPI with RAG Pipeline
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cmu-africa-backend
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount data directory for knowledge base
+      - ./data:/app/data:ro
+      # Mount logs directory (optional)
+      - backend-logs:/app/logs
+    networks:
+      - cmu-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.cmu-africa.service=backend"
+      - "com.cmu-africa.description=FastAPI Backend with RAG Pipeline"
+
+  # Frontend Service - React with Nginx
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_API_BASE_URL=/api
+    container_name: cmu-africa-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - cmu-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    labels:
+      - "com.cmu-africa.service=frontend"
+      - "com.cmu-africa.description=React Frontend with Nginx"
+
+# Networks
+networks:
+  cmu-network:
+    driver: bridge
+    name: cmu-africa-network
+
+# Volumes
+volumes:
+  backend-logs:
+    name: cmu-africa-backend-logs

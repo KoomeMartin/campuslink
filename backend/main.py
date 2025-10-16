@@ -73,7 +73,8 @@ def get_rag_pipeline():
             rag_pipeline = EnhancedRAGPipeline(
                 openai_api_key=openai_api_key,
                 pinecone_api_key=pinecone_api_key,
-                pinecone_environment=os.getenv("PINECONE_ENVIRONMENT", "us-east-1")
+                pinecone_environment=os.getenv("PINECONE_ENVIRONMENT", "us-east-1"),
+                index_name=os.getenv("PINECONE_INDEX_NAME", "cmu-africa-kb")
             )
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Failed to initialize RAG pipeline: {str(e)}")
@@ -89,9 +90,14 @@ async def root():
         "status": "active"
     }
 
+@app.get("/health")
+async def health_simple():
+    """Simple health check for Docker"""
+    return {"status": "healthy"}
+
 @app.get("/api/health")
 async def health_check():
-    """Health check endpoint"""
+    """Detailed health check endpoint"""
     try:
         pipeline = get_rag_pipeline()
         stats = pipeline.get_index_stats()

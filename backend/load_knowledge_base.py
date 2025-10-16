@@ -44,7 +44,8 @@ def load_knowledge_base():
         pipeline = EnhancedRAGPipeline(
             openai_api_key=openai_api_key,
             pinecone_api_key=pinecone_api_key,
-            pinecone_environment=os.getenv("PINECONE_ENVIRONMENT", "us-east-1")
+            pinecone_environment=os.getenv("PINECONE_ENVIRONMENT", "us-east-1"),
+            index_name=os.getenv("PINECONE_INDEX_NAME", "cmu-africa-kb")
         )
         print("RAG pipeline initialized successfully!")
     except Exception as e:

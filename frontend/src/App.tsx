@@ -71,7 +71,7 @@ function App() {
         id: (Date.now() + 1).toString(),
         type: 'assistant',
         content:
-          '❌ Sorry, I encountered an error. Please make sure the backend server is running on port 8000. You can check the connection by visiting http://localhost:8000/api/health',
+          '❌ Sorry, I encountered an error. Please make sure the backend server is running on port 8001. You can check the connection by visiting http://localhost:8001/health',
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
